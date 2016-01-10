@@ -5,10 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "babel": "babel src --out-dir dist",
-    "build": "npm run-script clear && npm run-script babel",
+    "build": "npm run-script clear && npm run-script babel && npm run-script remove-test-dirs",
     "clear": "rm -rf dist/ && mkdir dist/",
     "prepublish": "npm run build",
-    "test": "xo"
+    "remove-test-dirs": "rm -rf dist/__*",
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose",
+    "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand"
   },
   "files": [
     "dist/"
@@ -29,6 +31,31 @@
       "url": "http://danielmschmidt.de"
     }
   ],
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/DrawerLayoutExample/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [
+      "promise",
+      "source-map"
+    ],
+    "verbose": true,
+    "testPathDirs": [
+      "src/"
+    ]
+  },
   "xo": {
     "ignores": [
       "DrawerLayoutExample/**",
@@ -95,6 +122,7 @@
   "devDependencies": {
     "babel-cli": "^6.0.0",
     "babel-eslint": "^5.0.0-beta6",
+    "babel-jest": "^6.0.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "eslint": "^1.10.3",
     "eslint-config-xo": "^0.9.1",
@@ -102,7 +130,12 @@
     "eslint-plugin-no-empty-blocks": "0.0.2",
     "eslint-plugin-no-use-extend-native": "^0.3.3",
     "eslint-plugin-react": "^3.13.1",
-    "react-native": "^0.17.0",
+    "istanbul": "gotwarlost/istanbul#source-map",
+    "jest-cli": "^0.8.2",
+    "react": "^0.14.3",
+    "react-addons-test-utils": "^0.14.3",
+    "react-native": "^0.18.0",
+    "react-shallow-testutils": "^0.7.1",
     "xo": "^0.12.1"
   }
 }
