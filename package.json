@@ -33,7 +33,7 @@
   ],
   "jest": {
     "scriptPreprocessor": "./node_modules/babel-jest",
-    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "setupEnvScriptFile": "./jestSupport/env.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/DrawerLayoutExample/"
@@ -48,8 +48,24 @@
       "es6"
     ],
     "unmockedModulePathPatterns": [
+      "cheerio",
+      "define-properties",
+      "domhandler",
+      "enzyme",
+      "es-abstract",
+      "fbjs",
+      "function-bind",
+      "htmlparser2",
+      "lodash",
+      "object-keys",
+      "object.assign",
+      "object.values",
       "promise",
-      "source-map"
+      "react",
+      "react-addons-test-utils",
+      "react-dom",
+      "source-map",
+      "underscore"
     ],
     "verbose": true,
     "testPathDirs": [
@@ -124,6 +140,7 @@
     "babel-eslint": "^5.0.0-beta6",
     "babel-jest": "^6.0.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "enzyme": "^2.0.0",
     "eslint": "^1.10.3",
     "eslint-config-xo": "^0.9.1",
     "eslint-plugin-babel": "^3.0.0",
@@ -135,6 +152,7 @@
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
     "react-native": "^0.18.0",
+    "react-native-mock": "0.0.6",
     "react-shallow-testutils": "^0.7.1",
     "xo": "^0.12.1"
   }
